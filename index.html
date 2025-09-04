@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>花田 達希 | Hanada Tatsuki — Research</title>
+  <meta name="description" content="花田 達希（Hanada Tatsuki）の研究者個人サイト。第一原理計算、トポロジカル物性、準安定相設計など。" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "Noto Sans JP", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+          },
+          colors: {
+            brand: {
+              50: '#ecfeff', 100:'#cffafe', 200:'#a5f3fc', 300:'#67e8f9', 400:'#22d3ee', 500:'#06b6d4', 600:'#0891b2', 700:'#0e7490', 800:'#155e75', 900:'#164e63'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2, 6, 23, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Subtle grain and gradient background */
+    body { background: radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.25), transparent), radial-gradient(900px 700px at -10% 10%, rgba(99,102,241,.18), transparent), linear-gradient(180deg, #0b1220, #0b1220 220px, #0b1220); }
+    .noise::before { content:''; position:fixed; inset:0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.035"/></svg>'); pointer-events:none; mix-blend-mode:overlay; }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(10px); }
+    /* Smooth anchor offset for fixed header */
+    :target::before { content:""; display:block; height:72px; margin:-72px 0 0; }
+  /* Light theme accessibility overrides */
+    .light body { background: linear-gradient(180deg,#ffffff,#ffffff 220px,#f8fafc); color:#0f172a; }
+    .light .glass { background: linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.65)); border:1px solid rgba(15,23,42,.12); }
+    .light header .glass { background: rgba(255,255,255,.85); }
+    .light a { color:#0e7490; }
+    .light .text-slate-100, .light .text-slate-200, .light .text-slate-300 { color:#0f172a !important; }
+    .light .text-slate-400 { color:#334155 !important; }
+    .light [class*="bg-white/5"] { background: rgba(2,6,23,0.06) !important; }
+    .light [class*="ring-white/10"] { box-shadow: none !important; border:1px solid rgba(15,23,42,.12) !important; }
+    .light .prose-invert, .light .prose-invert :where(p,li,em,strong,code) { color:#0f172a; }
+    .light .prose-invert a { color:#0e7490; }
+    .light ::selection{ background: rgba(14,116,144,.2); }
+    .light .avatar-card { background:#fff !important; color:#0f172a !important; border:1px solid rgba(15,23,42,.12); }
+  </style>
+</head>
+<body class="noise text-slate-100 selection:bg-brand-300/30">
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 z-50">
+    <div class="mx-auto max-w-6xl px-4">
+      <nav class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3 shadow-soft">
+        <a href="#top" class="group inline-flex items-center gap-2 font-semibold tracking-wide">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brand-500/20 ring-1 ring-brand-400/30"><span class="font-extrabold">TH</span></span>
+          <span class="hidden sm:block">Hanada Tatsuki</span>
+        </a>
+        <ul class="hidden gap-6 text-sm sm:flex">
+          <li><a href="#about" class="opacity-90 hover:opacity-100">About</a></li>
+          <li><a href="#exp" class="opacity-90 hover:opacity-100">Experience</a></li>
+          <li><a href="#edu" class="opacity-90 hover:opacity-100">Education</a></li>
+          <li><a href="#theses" class="opacity-90 hover:opacity-100">Theses</a></li>
+          <li><a href="#pubs" class="opacity-90 hover:opacity-100">Publications</a></li>
+          <li><a href="#software" class="opacity-90 hover:opacity-100">Software</a></li>
+          <li><a href="#honors" class="opacity-90 hover:opacity-100">Honors</a></li>
+          <li><a href="#blog" class="opacity-90 hover:opacity-100">Blog</a></li>
+          <li><a href="#talks" class="opacity-90 hover:opacity-100">Talks</a></li>
+          <li><a href="#contact" class="opacity-90 hover:opacity-100">Contact</a></li>
+        </ul>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="rounded-xl px-3 py-2 text-sm hover:bg-white/10 ring-1 ring-white/10" aria-label="テーマ切替">☾</button>
+          <a href="assets/HanadaTatsuki_CV.pdf" class="rounded-xl bg-brand-500/80 px-3 py-2 text-sm font-semibold ring-1 ring-brand-300/50 hover:bg-brand-500">CV</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="mx-auto max-w-6xl px-4 pt-28 sm:pt-32">
+    <section class="relative">
+      <div class="grid items-center gap-10 md:grid-cols-2">
+        <div>
+          <h1 class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">花田 達希<span class="ml-3 text-brand-300">/ Hanada Tatsuki</span></h1>
+          <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-300">第一原理計算・トポロジカル物性・強相関電子系を中心に、<span class="whitespace-nowrap">バンドトポロジー</span>に基づく<strong class="font-semibold text-white">準安定物性の設計</strong>を探究しています。最近は液相やアモルファスを含む非周期系、超伝導共振器材料にも関心があります。</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">First‑principles</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Topological materials</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Metastability</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">ML Potentials</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Wannier</span>
+          </div>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#pubs" class="rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/15 hover:bg-white/20">主要成果を見る</a>
+            <div class="flex items-center gap-3 opacity-90">
+              <a class="hover:opacity-100" href="https://x.com/flower_tat25" aria-label="X / Twitter" target="_blank" rel="noopener">
+                <!-- X icon -->
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2H21.5l-7.52 8.58L23 22h-6.406l-5.007-6.083L5.8 22H2.5l8.05-9.18L1 2h6.594l4.54 5.72L18.244 2Zm-1.123 18h1.826L7.01 4H5.09L17.12 20Z" fill="currentColor"/></svg>
+              </a>
+              <a class="hover:opacity-100" href="https://github.com/nad-tat1025" aria-label="GitHub" target="_blank" rel="noopener">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.59 2 12.253c0 4.525 2.865 8.36 6.839 9.715.5.096.682-.223.682-.497 0-.245-.009-.895-.014-1.756-2.782.616-3.369-1.37-3.369-1.37-.455-1.178-1.11-1.492-1.11-1.492-.908-.633.07-.62.07-.62 1.004.073 1.533 1.06 1.533 1.06.892 1.567 2.341 1.115 2.913.852.091-.666.35-1.115.636-1.372-2.221-.259-4.555-1.14-4.555-5.074 0-1.121.389-2.037 1.03-2.756-.104-.26-.447-1.303.098-2.715 0 0 .84-.27 2.75 1.053A9.35 9.35 0 0 1 12 6.844c.85.004 1.705.116 2.505.34 1.91-1.322 2.748-1.053 2.748-1.053.547 1.412.204 2.455.1 2.715.64.72 1.028 1.635 1.028 2.756 0 3.944-2.338 4.812-4.566 5.067.359.318.678.946.678 1.907 0 1.377-.013 2.487-.013 2.826 0 .276.18.597.688.496C19.138 20.61 22 16.777 22 12.253 22 6.59 17.523 2 12 2Z"/></svg>
+              </a>
+              <a class="hover:opacity-100" href="https://scholar.google.com/citations?user=Ii4hAoIAAAAJ&hl=ja" aria-label="Google Scholar" target="_blank" rel="noopener">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 1 12l4 3 7-6.06L19.5 15H9v3h13v-3l-7.5-6L12 3Z"/></svg>
+              </a>
+              <a class="hover:opacity-100" href="https://orcid.org/0009-0003-5355-8809" aria-label="ORCID" target="_blank" rel="noopener">
+                <svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0Zm-21.5 66.9v122.2H93V66.9h13.5Zm30.5 0h35.1c27.4 0 44.9 16.7 44.9 41.7 0 28.9-22.8 43.7-49.6 43.7h-17v36.8H139V66.9Zm33.7 62c18.6 0 30.6-10.1 30.6-25s-10.9-25.4-29.9-25.4H156v50.4h16.7Z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="mx-auto aspect-square w-56 rounded-3xl bg-gradient-to-br from-brand-400/30 to-indigo-400/20 p-1 ring-1 ring-white/10 sm:w-64">
+            <div class="flex h-full w-full items-center justify-center rounded-2xl avatar-card bg-slate-900/60 text-6xl font-black">TH</div>
+          </div>
+          <div class="pointer-events-none absolute -left-8 -top-8 hidden h-24 w-24 rounded-full bg-brand-400/30 blur-2xl md:block"></div>
+          <div class="pointer-events-none absolute -right-8 -bottom-8 hidden h-20 w-20 rounded-full bg-indigo-400/30 blur-2xl md:block"></div>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        <div class="glass rounded-2xl p-4 ring-1 ring-white/10">
+          <p class="text-xs uppercase tracking-wider text-slate-400">Affiliation</p>
+          <p class="mt-1 text-sm">東京大学 大学院 工学系研究科 物理工学専攻 — 有田研究室（修士2年）<br>理化学研究所 創発物性科学センター — トポロジカル材料設計ユニット（研修生）</p>
+        </div>
+        <div class="glass rounded-2xl p-4 ring-1 ring-white/10">
+          <p class="text-xs uppercase tracking-wider text-slate-400">Research interests</p>
+          <p class="mt-1 text-sm">準安定相の設計、トポロジカル物性、強相関電子系、液体・アモルファス、超伝導共振器材料</p>
+        </div>
+        <div class="glass rounded-2xl p-4 ring-1 ring-white/10">
+          <p class="text-xs uppercase tracking-wider text-slate-400">Contact</p>
+          <p class="mt-1 text-sm">nad-tat1025@g.ecc.u-tokyo.ac.jp<br>hanada1025.recruit@gmail.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">About</h2>
+      <div class="mt-4 grid gap-6 md:grid-cols-3">
+        <div class="md:col-span-2">
+          <div class="prose prose-invert max-w-none prose-p:leading-relaxed">
+            <p>第一原理計算と機械学習を組み合わせ、非平衡・非周期系まで含む電子物性の理解と設計指針の構築に取り組んでいる。特に、<em>バンド反転</em>に着目した準安定性の起源解明と、それを活用した物性制御に関心を持つ。</p>
+            <p>固相のSlater–Kosterパラメータを液相へ移植するライブラリ<strong>sol2disorder</strong>を個人開発。大規模系の電子状態計算を高速化し、液体やアモルファスといった非周期系のトポロジー探索へ応用している。</p>
+          </div>
+        </div>
+        <aside class="glass rounded-2xl p-4 ring-1 ring-white/10">
+          <p class="text-sm font-semibold">Now</p>
+          <ul class="mt-2 space-y-1 text-sm text-slate-300">
+            <li>• Sn の構造相転移とバンド反転の関係</li>
+            <li>• 低融点合金を舞台にしたトポロジカル液体</li>
+            <li>• 超伝導共振器向けの安定絶縁体/準安定超伝導材料探索</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="edu" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Education</h2>
+      <div id="edu-list" class="mt-6 grid gap-4"></div>
+    </section>
+
+    <!-- Experience & Activities -->
+    <section id="exp" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Experience & Activities</h2>
+      <div id="exp-list" class="mt-6 grid gap-4"></div>
+    </section>
+
+    <!-- Honors & Patents -->
+    <section id="honors" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Honors & Patents</h2>
+      <div id="honors-list" class="mt-6 grid gap-4"></div>
+    </section>
+
+    <!-- Theses -->
+    <section id="theses" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Theses</h2>
+      <div id="theses-list" class="mt-6 grid gap-4"></div>
+    </section>
+
+    <!-- Publications -->
+    <section id="pubs" class="mt-20">
+      <div class="flex items-end justify-between">
+        <h2 class="text-xl font-bold tracking-tight">Publications & Manuscripts</h2>
+        <a href="https://scholar.google.com/citations?user=Ii4hAoIAAAAJ&hl=ja" target="_blank" rel="noopener" class="text-sm text-brand-200 hover:underline">Google Scholar →</a>
+      </div>
+      <ol id="pubs-list" class="mt-6 space-y-4"></ol>
+    </section>
+
+    <!-- Software -->
+    <section id="software" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Software</h2>
+      <div id="software-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
+    </section>
+
+    <!-- Talks (compact) -->
+    <section id="talks" class="mt-20">
+      <div class="flex items-end justify-between">
+        <h2 class="text-xl font-bold tracking-tight">Talks / Presentations</h2>
+        <span class="text-xs text-slate-400">Oral & Poster</span>
+      </div>
+      <div id="talks-list" class="mt-6 space-y-3"></div>
+    </section>
+
+    <!-- Skills (compact chips) -->
+    <section class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Toolbox</h2>
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">VASP</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Quantum ESPRESSO</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Wannier90 / WannierTools</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">ASE</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Phonopy / ALAMODE</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">SCTK</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">USPEX</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">TBmodels / kwant</span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Python / Fortran</span>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="mt-20">
+      <div class="flex items-end justify-between">
+        <h2 class="text-xl font-bold tracking-tight">Blog</h2>
+        <a class="text-sm text-brand-200 hover:underline" href="?">一覧に戻る</a>
+      </div>
+      <div class="mt-4 grid gap-4">
+        <div class="flex items-center gap-2">
+          <input id="blog-search" class="w-full max-w-sm rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" placeholder="検索（タイトル・タグ）" />
+          <a class="text-sm opacity-80 hover:opacity-100" href="posts/rss.xml">RSS</a>
+        </div>
+        <div id="blog-list" class="space-y-3"></div>
+        <article id="blog-post" class="hidden glass rounded-2xl p-4 ring-1 ring-white/10">
+          <h3 id="post-title" class="text-lg font-semibold"></h3>
+          <p id="post-meta" class="mt-1 text-xs text-slate-400"></p>
+          <div id="post-content" class="prose prose-invert max-w-none mt-4"></div>
+        </article>
+        <details class="mt-2 opacity-80">
+          <summary class="cursor-pointer text-xs">posts/posts.json と Markdown の雛形</summary>
+          <pre class="mt-2 whitespace-pre-wrap text-xs bg-black/30 p-3 rounded-lg ring-1 ring-white/10">posts/posts.json
+[
+  {
+    "slug": "spectral-localizer-notes",
+    "title": "Spectral LocalizerでZ₂を計算するメモ",
+    "date": "2025-09-03",
+    "tags": ["topology","spectral-localizer"],
+    "summary": "定義から導出、Kane–Meleモデルまでの実装ノート"
+  }
+]
+
+posts/spectral-localizer-notes.md
+---
+# Spectral LocalizerでZ₂を計算するメモ
+_2025-09-03_  
+タグ: topology, spectral-localizer
+
+ここに本文（Markdown）。数式は $E=mc^2$ のように書けます。
+---</pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Contact</h2>
+      <div class="mt-4 grid gap-6 md:grid-cols-2">
+        <div class="glass rounded-2xl p-5 ring-1 ring-white/10">
+          <p class="text-sm">共同研究・講演・資料提供などのご相談は、所属アドレス（推奨）または Gmail までご連絡ください。</p>
+          <div class="mt-3 text-sm">
+            <div>nad-tat1025@g.ecc.u-tokyo.ac.jp</div>
+            <div>hanada1025.recruit@gmail.com</div>
+          </div>
+        </div>
+        <form class="glass rounded-2xl p-5 ring-1 ring-white/10" action="https://formspree.io/f/mayvlxyz" method="POST">
+          <div class="grid gap-3">
+            <input class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" placeholder="お名前" name="name" required />
+            <input type="email" class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" placeholder="メールアドレス" name="email" required />
+            <textarea class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" rows="4" placeholder="メッセージ" name="message" required></textarea>
+            <button class="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold ring-1 ring-brand-300/60 hover:bg-brand-400/90" type="submit">送信</button>
+            <p class="text-xs text-slate-400">※ Formspree のダミーエンドポイント。運用前に自身のエンドポイントに差し替えてください。</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-24 border-t border-white/10 py-10 text-sm text-slate-400">
+      <div class="flex flex-col items-center justify-between gap-2 sm:flex-row">
+        <p>© <span id="year"></span> Hanada Tatsuki</p>
+        <div class="flex items-center gap-3">
+          <a href="/" class="hover:underline">ja</a>
+          <span aria-hidden="true">·</span>
+          <a href="/" class="opacity-60 hover:underline">en (coming soon)</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script id="site-data" type="application/json">
+  {
+    "theses": [
+      {
+        "year": 2025,
+        "degree": "Master's Thesis",
+        "title": "バンドトポロジーに基づく準安定物性制御の第一原理計算",
+        "institution": "東京大学大学院 工学系研究科 物理工学専攻",
+        "dept": "平山研究室 / 有田研究室",
+        "note": "修士論文"
+      },
+      {
+        "year": 2023,
+        "degree": "Bachelor's Thesis",
+        "title": "有機電荷移動錯体 TTF-CA における光誘起相転移の分子論的理論研究",
+        "institution": "早稲田大学 先進理工学部",
+        "dept": "化学・生命化学科（中井研究室）",
+        "note": "卒業論文"
+      }
+    ],
+
+    "publications": [
+      {
+        "title": "Neutral-to-ionic photoinduced phase transition of tetrathiafulvalene-p-chloranil by electronic and vibrational excitation: A real-time nuclear–electronic dynamics simulation study",
+        "authors": "Tatsuki Hanada, Hiroki Uratani, Hiromi Nakai",
+        "venue": "J. Chem. Phys.",
+        "year": 2023,
+        "doi": "10.1063/5.0159424",
+        "url": "https://doi.org/10.1063/5.0159424",
+        "note": "分子内振動と電子の相互作用に基づく新しい光学的物性制御機構を提案。"
+      },
+      {
+        "title": "Metastability from the perspective of topological band inversion: A first‑principles study on the structural phase transition of Sn",
+        "authors": "T. Hanada, H. Oike, M. Hirayama",
+        "venue": "preprint",
+        "status": "to be submitted",
+        "note": "バンド反転に伴う結合性の切替を鍵とする準安定相設計指針を提示。"
+      },
+      {
+        "title": "Strain engineering on activation energy of α‑Sn/InSb(001) epitaxial film",
+        "authors": "H. Sun, Y. Ito, T. Hanada, M. Hirayama, H. Oike",
+        "venue": "preprint",
+        "status": "to be submitted"
+      },
+      {
+        "title": "Ab initio stable insulator / metastable superconductor materials design for tunable superconducting resonator",
+        "authors": "T. Hanada, H. Oike, L. D. Anh, M. Hirayama",
+        "venue": "preprint",
+        "status": "to be submitted"
+      },
+      {
+        "title": "Thermally‑quenched metastable metallic state hidden behind insulating ground state",
+        "authors": "H. Oike, T. Hanada, M. Hirayama",
+        "venue": "preprint",
+        "status": "to be submitted"
+      },
+      {
+        "title": "Topological insulating liquid in fusible alloy",
+        "authors": "T. Hanada, M. Hirayama",
+        "venue": "preprint",
+        "status": "to be submitted"
+      }
+    ],
+
+    "software": [
+      {
+        "name": "sol2disorder",
+        "desc": "固相の Slater–Koster パラメータを液相へ移植し、非周期大規模系の電子状態を効率的に近似。",
+        "url": "https://github.com/nad-tat1025/sol2disorder",
+        "tags": [
+          "Python",
+          "Wannier",
+          "TB models"
+        ]
+      }
+    ],
+
+    "experience": [
+      {
+        "period": "2025–",
+        "title": "研修生, RIKEN CEMS トポロジカル材料設計ユニット",
+        "desc": "トポロジカル材料設計、準安定相の理論研究。",
+        "location": "和光 / Remote"
+      },
+      {
+        "period": "2024–",
+        "title": "修士課程, 東京大学 工学系研究科 物理工学専攻（有田研究室）",
+        "desc": "第一原理計算・バンドトポロジー・非周期系の電子状態。",
+        "location": "東京"
+      },
+      {
+        "period": "2024.09–2025.03",
+        "title": "Part-time Engineer, Preferred Networks",
+        "desc": "機械学習ポテンシャル PFP による分子シミュレーションの再現。",
+        "location": ""
+      },
+      {
+        "period": "2023.08 (1 week)",
+        "title": "Internship, RORZE",
+        "desc": "半導体搬送装置の搬送速度・搬送安定性の最適化。",
+        "location": ""
+      },
+      {
+        "period": "2023.08 (1 week)",
+        "title": "Internship, Sony Semiconductor Manufacturing",
+        "desc": "半導体チップ歩留まり改善に向けた Cu–Cu 接続の形状最適化。",
+        "location": ""
+      },
+      {
+        "period": "2023.09–2024.10",
+        "title": "第69回物性若手夏の学校 準備局スタッフ（世話人）",
+        "desc": "外部講師依頼・連絡、運営準備、当日対応など。200名超の参加運営に貢献。",
+        "location": "Japan"
+      },
+      {
+        "period": "2021.02–2023.03",
+        "title": "理工系学術サークル Wathematica（創立者・幹事長）",
+        "desc": "勉強会・講演会・交流会・SNS運用。会員100名超の公認サークルに成長。",
+        "location": ""
+      },
+      {
+        "period": "2019.05–2020.02",
+        "title": "個別指導塾 TOMAS（アルバイト講師）",
+        "desc": "小学生〜高校生の受験指導。",
+        "location": ""
+      }
+    ],
+
+    "awards": [
+      {
+        "year": "2025.03",
+        "name": "JST SPRING-GX（コース生採用内定・辞退）",
+        "by": "JST",
+        "note": "卒業時期調整に伴い辞退"
+      },
+      {
+        "year": "2022.06",
+        "name": "応援給付金 奨学金（奨学生内定）",
+        "by": "キーエンス財団",
+        "note": ""
+      }
+    ],
+
+    "patents": [
+      {
+        "year": "",
+        "title": "未公開（出願準備中）",
+        "number": "",
+        "status": "出願準備中",
+        "note": ""
+      }
+    ],
+
+    "education": [
+      {
+        "period": "2015.04–2018.03",
+        "stage": "高等学校",
+        "school": "神奈川県立港北高等学校",
+        "dept": "普通科"
+      },
+      {
+        "period": "2019.04–2023.03",
+        "stage": "学士課程",
+        "school": "早稲田大学 先進理工学部",
+        "dept": "化学・生命化学科（中井研究室：量子化学）"
+      },
+      {
+        "period": "2023.04–2025.09",
+        "stage": "修士課程",
+        "school": "東京大学大学院 工学系研究科 物理工学専攻",
+        "dept": "平山研究室 / 有田研究室：第一原理計算"
+      },
+      {
+        "period": "2025.10–（予定）",
+        "stage": "研究生（入学予定）",
+        "school": "東京大学大学院 工学系研究科 物理工学専攻",
+        "dept": "有田研究室：第一原理計算"
+      }
+    ],
+
+    "talks": [
+      {
+        "date": "2025-03",
+        "type": "Oral",
+        "title": "Snの準安定性の起源としてのトポロジカル相転移",
+        "event": "第72回日本応用物理学会 春季学術講演会",
+        "code": "17p-K307-10",
+        "location": "東京理科大学 野田キャンパス"
+      },
+      {
+        "date": "2025-02",
+        "type": "Oral",
+        "title": "Metastability origin is topological band inversion",
+        "event": "理論物理学生セミナー 2025",
+        "code": "",
+        "location": "オンライン"
+      },
+      {
+        "date": "2024-09",
+        "type": "Oral",
+        "title": "Snの金属-半金属転移に潜むトポロジカル相転移",
+        "event": "日本物理学会 第79回年次大会",
+        "code": "17aE318-4",
+        "location": "北海道大学 札幌キャンパス"
+      },
+      {
+        "date": "2024-08",
+        "type": "Poster",
+        "title": "超臨界流体 Hgにおけるトポロジカル液体",
+        "event": "第69回物性若手夏の学校",
+        "code": "",
+        "location": "ホテルたつき"
+      }
+    ]
+  }
+  </script>
+  <script>
+    // ===== Theme toggle =====
+    const btn = document.getElementById('themeToggle');
+    function setTheme(mode){
+      if(mode==='light'){
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.body.style.background = 'white';
+        btn.textContent='☀';
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        document.body.style.background = '';
+        btn.textContent='☾';
+      }
+      localStorage.setItem('theme', mode);
+    }
+    const saved = localStorage.getItem('theme');
+    setTheme(saved || 'dark');
+    btn.addEventListener('click', ()=> setTheme(document.documentElement.classList.contains('dark') ? 'light':'dark'));
+
+    // ===== Render from site-data JSON =====
+    const siteData = (()=>{ try { return JSON.parse(document.getElementById('site-data').textContent); } catch(e){ return {}; } })();
+
+    function el(tag, attrs={}, children=[]) {
+      const node = document.createElement(tag);
+      for (const [k,v] of Object.entries(attrs)) {
+        if (k === 'class') node.className = v; else if (k==='html') node.innerHTML = v; else node.setAttribute(k, v);
+      }
+      for (const c of children) node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+      return node;
+    }
+
+    function renderPublications(items=[]) {
+      const root = document.getElementById('pubs-list');
+      if(!root) return;
+      root.innerHTML = '';
+      items.forEach(p => {
+        const title = el('div', {class:'text-sm font-semibold'}, [p.title || 'Untitled']);
+        const metaParts = [];
+        if (p.authors) metaParts.push(p.authors);
+        if (p.venue) metaParts.push(p.venue);
+        if (p.year) metaParts.push(String(p.year));
+        const meta = el('div', {class:'mt-1 text-xs text-slate-300'}, [metaParts.join(', ')]);
+        if (p.url) meta.appendChild(el('a', {href:p.url, target:'_blank', rel:'noopener', class:'underline hover:no-underline ms-2'}, ['DOI/Link']));
+        const note = p.note ? el('p', {class:'mt-2 text-sm text-slate-200/90'}, [p.note]) : null;
+        const card = el('li', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [title, meta]);
+        if (note) card.appendChild(note);
+        root.appendChild(card);
+      });
+    }
+
+    function renderSoftware(items=[]) {
+      const root = document.getElementById('software-list') || document.getElementById('projects-list');
+      if(!root) return;
+      root.innerHTML='';
+      items.forEach(proj => {
+        const header = el('div', {class:'flex items-start justify-between'}, [
+          el('h3', {class:'text-sm font-semibold'}, [proj.name || 'Untitled']),
+          proj.url ? el('a', {href:proj.url, target:'_blank', rel:'noopener', class:'text-xs text-brand-200 hover:underline'}, ['Link →']) : el('span')
+        ]);
+        const desc = proj.desc ? el('p', {class:'mt-2 text-sm text-slate-300'}, [proj.desc]) : null;
+        const tags = (proj.tags||[]).map(t=> el('li', {class:'rounded-full bg-white/5 px-2 py-1 ring-1 ring-white/10'}, [t]));
+        const tagList = tags.length ? el('ul', {class:'mt-3 flex flex-wrap gap-2 text-xs text-slate-300'}, tags) : null;
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [header]);
+        if (desc) card.appendChild(desc);
+        if (tagList) card.appendChild(tagList);
+        root.appendChild(card);
+      });
+    }
+
+    renderPublications(siteData.publications || []);
+    renderSoftware(siteData.software || siteData.projects || []);
+
+    function renderExperience(items=[]) {
+      const root = document.getElementById('exp-list');
+      if(!root) return; root.innerHTML='';
+      items.forEach(x=>{
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-xs text-slate-400'}, [x.period||'']),
+          el('div', {class:'mt-1 text-sm font-semibold'}, [x.title||'Untitled']),
+          x.desc ? el('p', {class:'mt-1 text-sm text-slate-300'}, [x.desc]) : el('span'),
+          x.location ? el('p', {class:'mt-1 text-xs text-slate-400'}, [x.location]) : el('span')
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    function renderHonors(awards=[], patents=[]) {
+      const root = document.getElementById('honors-list');
+      if(!root) return; root.innerHTML='';
+      const col = (title, items, fmt) => {
+        const wrap = el('div', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('h3', {class:'text-sm font-semibold'}, [title])
+        ]);
+        const list = el('ul', {class:'mt-3 space-y-2'}, []);
+        (items||[]).forEach(it=>{
+          const lineTop = el('div', {class:'text-sm'}, [fmt(it)]);
+          const lineSub = el('div', {class:'text-xs text-slate-400'}, [ [it.year, it.by || it.status, it.number].filter(Boolean).join(' · ') ]);
+          const li = el('li', {class:''}, []);
+          li.appendChild(lineTop); li.appendChild(lineSub); list.appendChild(li);
+        });
+        if(!(items&&items.length)) list.appendChild(el('li',{class:'text-xs text-slate-400'},['後日追加予定。']));
+        wrap.appendChild(list);
+        return wrap;
+      };
+      root.appendChild(col('Awards / Scholarships', awards, it=> it.name || 'Untitled'));
+      root.appendChild(col('Patents', patents, it=> it.title || 'Untitled'));
+    }
+
+    renderExperience(siteData.experience || []);
+    renderHonors(siteData.awards || [], siteData.patents || []);
+    renderEducation(siteData.education || []);
+    renderTalks(siteData.talks || []);
+    renderTheses(siteData.theses || []);
+    renderTheses(siteData.theses || []);
+    renderEducation(siteData.education || []);
+    renderTalks(siteData.talks || []);
+
+    // ===== Education, Talks & Theses renderers =====
+    function renderEducation(items=[]) {
+      const root = document.getElementById('edu-list');
+      if(!root) return; root.innerHTML='';
+      items.forEach(ed=>{
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-xs text-slate-400'}, [ed.period||'']),
+          el('div', {class:'mt-1 text-sm font-semibold'}, [ (ed.stage? ed.stage+' · ' : '') + (ed.school||'') ]),
+          ed.dept ? el('div', {class:'mt-1 text-sm text-slate-300'}, [ed.dept]) : el('span')
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    function renderTalks(items=[]) {
+      const root = document.getElementById('talks-list');
+      if(!root) return; root.innerHTML='';
+      const sorted = [...items].sort((a,b)=> String(b.date||'').localeCompare(String(a.date||'')));
+      sorted.forEach(t=>{
+        const meta1 = [t.type, t.event].filter(Boolean).join(' · ');
+        const meta2 = [t.code, t.location, t.date].filter(Boolean).join(' · ');
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-sm font-semibold'}, [t.title||'Untitled']),
+          el('div', {class:'mt-1 text-xs text-slate-400'}, [meta1]),
+          el('div', {class:'mt-1 text-xs text-slate-400'}, [meta2])
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    function renderTheses(items=[]) {
+      const root = document.getElementById('theses-list');
+      if(!root) return; root.innerHTML='';
+      const sorted = [...items].sort((a,b)=> (b.year||0)-(a.year||0));
+      sorted.forEach(th=>{
+        const head = [th.degree, th.year].filter(Boolean).join(' · ');
+        const inst = [th.institution, th.dept].filter(Boolean).join(' / ');
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-sm font-semibold'}, [th.title||'Untitled']),
+          el('div', {class:'mt-1 text-xs text-slate-400'}, [head]),
+          inst ? el('div', {class:'mt-1 text-xs text-slate-400'}, [inst]) : el('span'),
+          th.note ? el('div', {class:'mt-1 text-xs text-slate-400'}, [th.note]) : el('span')
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    // ===== Blog (client-side Markdown) =====
+    function renderEducation(items=[]) {
+      const root = document.getElementById('edu-list');
+      if(!root) return; root.innerHTML='';
+      items.forEach(ed=>{
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-xs text-slate-400'}, [ed.period||'']),
+          el('div', {class:'mt-1 text-sm font-semibold'}, [ (ed.stage? ed.stage+' · ' : '') + (ed.school||'') ]),
+          ed.dept ? el('div', {class:'mt-1 text-sm text-slate-300'}, [ed.dept]) : el('span')
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    function renderTalks(items=[]) {
+      const root = document.getElementById('talks-list');
+      if(!root) return; root.innerHTML='';
+      const sorted = [...items].sort((a,b)=> String(b.date||'').localeCompare(String(a.date||'')));
+      sorted.forEach(t=>{
+        const meta1 = [t.type, t.event].filter(Boolean).join(' · ');
+        const meta2 = [t.code, t.location, t.date].filter(Boolean).join(' · ');
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [
+          el('div', {class:'text-sm font-semibold'}, [t.title||'Untitled']),
+          el('div', {class:'mt-1 text-xs text-slate-400'}, [meta1]),
+          el('div', {class:'mt-1 text-xs text-slate-400'}, [meta2])
+        ]);
+        root.appendChild(card);
+      });
+    }
+
+    // ===== Blog (client-side Markdown) =====
+    async function loadPostsIndex(){
+      try {
+        const res = await fetch('posts/posts.json', {cache:'no-store'});
+        if(!res.ok) return [];
+        const list = await res.json();
+        return Array.isArray(list) ? list.sort((a,b)=> (b.date||'').localeCompare(a.date||'')) : [];
+      } catch { return []; }
+    }
+
+    async function renderPost(slug){
+      const postWrap = document.getElementById('blog-post');
+      const listWrap = document.getElementById('blog-list');
+      if(!postWrap || !listWrap) return;
+      listWrap.classList.add('hidden');
+      postWrap.classList.remove('hidden');
+      try {
+        const md = await (await fetch(`posts/${slug}.md`, {cache:'no-store'})).text();
+        const idx = await loadPostsIndex();
+        const meta = idx.find(p=>p.slug===slug) || {title: slug, date: ''};
+        document.getElementById('post-title').textContent = meta.title || slug;
+        document.getElementById('post-meta').textContent = [meta.date, (meta.tags||[]).join(', ')].filter(Boolean).join(' · ');
+        document.getElementById('post-content').innerHTML = marked.parse(md);
+      } catch (e) {
+        document.getElementById('post-title').textContent = 'Not found';
+        document.getElementById('post-meta').textContent = '';
+        document.getElementById('post-content').textContent = '投稿が見つかりません。ファイル名とスラッグを確認してください。';
+      }
+    }
+
+    function renderPostList(index){
+      const listWrap = document.getElementById('blog-list');
+      const postWrap = document.getElementById('blog-post');
+      if(!listWrap || !postWrap) return;
+      postWrap.classList.add('hidden');
+      listWrap.classList.remove('hidden');
+      listWrap.innerHTML = '';
+      const q = document.getElementById('blog-search');
+      function draw(){
+        const term = (q?.value||'').toLowerCase();
+        listWrap.innerHTML = '';
+        index.filter(p=>{
+          const hay = `${p.title} ${(p.tags||[]).join(' ')}`.toLowerCase();
+          return !term || hay.includes(term);
+        }).forEach(p=>{
+          const card = el('a', {href:`?post=${encodeURIComponent(p.slug)}`, class:'block glass rounded-2xl p-4 ring-1 ring-white/10 hover:bg-white/5'}, [
+            el('div', {class:'text-sm font-semibold'}, [p.title]),
+            el('div', {class:'mt-1 text-xs text-slate-400'}, [p.date || '', ' ', (p.tags||[]).join(', ')])
+          ]);
+          if (p.summary) card.appendChild(el('p', {class:'mt-2 text-sm text-slate-300'}, [p.summary]));
+          listWrap.appendChild(card);
+        });
+      }
+      q?.addEventListener('input', draw);
+      draw();
+    }
+
+    (async function initBlog(){
+      const params = new URLSearchParams(location.search);
+      const slug = params.get('post');
+      const index = await loadPostsIndex();
+      if (slug) await renderPost(slug); else renderPostList(index);
+    })();
+
+    // ===== Footer year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hanada Tatsuki",
+    "alternateName": "花田 達希",
+    "url": "https://nad-tat1025.github.io/",
+    "email": "mailto:nad-tat1025@g.ecc.u-tokyo.ac.jp",
+    "sameAs": [
+      "https://x.com/flower_tat25",
+      "https://github.com/nad-tat1025",
+      "https://scholar.google.com/citations?user=Ii4hAoIAAAAJ",
+      "https://orcid.org/0009-0003-5355-8809"
+    ],
+    "affiliation": [
+      {"@type":"Organization","name":"The University of Tokyo"},
+      {"@type":"Organization","name":"RIKEN Center for Emergent Matter Science"}
+    ],
+    "knowsAbout": ["Topological materials","First-principles","Metastability","Machine-learning potentials","Wannier"]
+  }
+  </script>
+</body>
+</html>
