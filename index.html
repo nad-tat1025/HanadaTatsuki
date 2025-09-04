@@ -89,11 +89,10 @@
           <h1 class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">花田 達希<span class="ml-3 text-brand-300">/ Hanada Tatsuki</span></h1>
           <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-300">第一原理計算・トポロジカル物性・強相関電子系・非平衡物性を中心に、<span class="whitespace-nowrap">物質の電子状態を設計・制御することに興味を持っています。</p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">First‑principles</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">First‑principles calculations</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Non-equilibrium physics</span>
             <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Topological materials</span>
-            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Metastability</span>
-            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">ML Potentials</span>
-            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Wannier</span>
+            <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">Strongly correlated slectrons</span>
           </div>
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a href="#pubs" class="rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold ring-1 ring-white/15 hover:bg-white/20">主要成果を見る</a>
@@ -139,27 +138,6 @@
       </div>
     </section>
 
-    <!-- About -->
-<!--     <section id="about" class="mt-20">
-      <h2 class="text-xl font-bold tracking-tight">About</h2>
-      <div class="mt-4 grid gap-6 md:grid-cols-3">
-        <div class="md:col-span-2">
-          <div class="prose prose-invert max-w-none prose-p:leading-relaxed">
-            <p>第一原理計算と機械学習を組み合わせ、非平衡・非周期系まで含む電子物性の理解と設計指針の構築に取り組んでいる。特に、<em>バンド反転</em>に着目した準安定性の起源解明と、それを活用した物性制御に関心を持つ。</p>
-            <p>固相のSlater–Kosterパラメータを液相へ移植するライブラリ<strong>sol2disorder</strong>を個人開発。大規模系の電子状態計算を高速化し、液体やアモルファスといった非周期系のトポロジー探索へ応用している。</p>
-          </div>
-        </div>
-        <aside class="glass rounded-2xl p-4 ring-1 ring-white/10">
-          <p class="text-sm font-semibold">Now</p>
-          <ul class="mt-2 space-y-1 text-sm text-slate-300">
-            <li>• Sn の構造相転移とバンド反転の関係</li>
-            <li>• 低融点合金を舞台にしたトポロジカル液体</li>
-            <li>• 超伝導共振器向けの安定絶縁体/準安定超伝導材料探索</li>
-          </ul>
-        </aside>
-      </div>
-    </section> -->
-
     <!-- Education -->
     <section id="edu" class="mt-20">
       <h2 class="text-xl font-bold tracking-tight">Education</h2>
@@ -170,12 +148,6 @@
     <section id="exp" class="mt-20">
       <h2 class="text-xl font-bold tracking-tight">Experience & Activities</h2>
       <div id="exp-list" class="mt-6 grid gap-4"></div>
-    </section>
-
-    <!-- Honors & Patents -->
-    <section id="honors" class="mt-20">
-      <h2 class="text-xl font-bold tracking-tight">Honors & Patents</h2>
-      <div id="honors-list" class="mt-6 grid gap-4"></div>
     </section>
 
     <!-- Theses -->
@@ -193,12 +165,6 @@
       <ol id="pubs-list" class="mt-6 space-y-4"></ol>
     </section>
 
-    <!-- Software -->
-    <section id="software" class="mt-20">
-      <h2 class="text-xl font-bold tracking-tight">Software</h2>
-      <div id="software-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
-    </section>
-
     <!-- Talks (compact) -->
     <section id="talks" class="mt-20">
       <div class="flex items-end justify-between">
@@ -206,6 +172,18 @@
         <span class="text-xs text-slate-400">Oral & Poster</span>
       </div>
       <div id="talks-list" class="mt-6 space-y-3"></div>
+    </section>
+
+    <!-- Software -->
+    <section id="software" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Software</h2>
+      <div id="software-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
+    </section>
+
+    <!-- Honors & Patents -->
+    <section id="honors" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Honors & Patents</h2>
+      <div id="honors-list" class="mt-6 grid gap-4"></div>
     </section>
 
     <!-- Skills (compact chips) -->
@@ -263,29 +241,6 @@ _2025-09-03_
 ここに本文（Markdown）。数式は $E=mc^2$ のように書けます。
 ---</pre>
         </details>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="mt-20">
-      <h2 class="text-xl font-bold tracking-tight">Contact</h2>
-      <div class="mt-4 grid gap-6 md:grid-cols-2">
-        <div class="glass rounded-2xl p-5 ring-1 ring-white/10">
-          <p class="text-sm">共同研究・講演・資料提供などのご相談は、所属アドレス（推奨）または Gmail までご連絡ください。</p>
-          <div class="mt-3 text-sm">
-            <div>nad-tat1025@g.ecc.u-tokyo.ac.jp</div>
-            <div>hanada1025.recruit@gmail.com</div>
-          </div>
-        </div>
-        <form class="glass rounded-2xl p-5 ring-1 ring-white/10" action="https://formspree.io/f/mayvlxyz" method="POST">
-          <div class="grid gap-3">
-            <input class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" placeholder="お名前" name="name" required />
-            <input type="email" class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" placeholder="メールアドレス" name="email" required />
-            <textarea class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-300/60" rows="4" placeholder="メッセージ" name="message" required></textarea>
-            <button class="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold ring-1 ring-brand-300/60 hover:bg-brand-400/90" type="submit">送信</button>
-            <p class="text-xs text-slate-400">※ Formspree のダミーエンドポイント。運用前に自身のエンドポイントに差し替えてください。</p>
-          </div>
-        </form>
       </div>
     </section>
 
