@@ -116,32 +116,17 @@
 <!--           <div class="mx-auto aspect-square w-56 rounded-3xl bg-gradient-to-br from-brand-400/30 to-indigo-400/20 p-1 ring-1 ring-white/10 sm:w-64">
             <div class="flex h-full w-full items-center justify-center rounded-2xl avatar-card bg-slate-900/60 text-6xl font-black">TH</div>
           </div> -->
-          <div class="mx-auto aspect-square w-56 rounded-3xl bg-gradient-to-br from-brand-400/30 to-indigo-400/20 p-1 ring-1 ring-white/10 sm:w-64">
-            <picture class="block h-full w-full">
-              <!-- 高効率コーデックがある場合は優先 -->
-              <source srcset="assets/portrait.avif" type="image/avif">
-              <source srcset="assets/portrait.webp" type="image/webp">
-              <!-- 1x/2x を用意している場合は srcset で高解像度対応 -->
-              <img
-                id="avatar"
-                src="assets/portrait.png"
-                srcset="assets/portrait.png 1x, assets/portrait@2x.png 2x"
-                alt="Hanada Tatsuki のポートレート"
-                width="512" height="512"
-                class="h-full w-full rounded-2xl object-cover"
-                loading="eager" decoding="async" fetchpriority="high"
-              >
-            </picture>
-            <!-- 画像が読み込めなかった時のフォールバック（任意） -->
-            <template id="avatar-fallback">
-              <div class="flex h-full w-full items-center justify-center rounded-2xl bg-slate-900/60 text-6xl font-black">TH</div>
-            </template>
-          </div>
-          <div class="pointer-events-none absolute -left-8 -top-8 hidden h-24 w-24 rounded-full bg-brand-400/30 blur-2xl md:block"></div>
-          <div class="pointer-events-none absolute -right-8 -bottom-8 hidden h-20 w-20 rounded-full bg-indigo-400/30 blur-2xl md:block"></div>
+        <div class="mx-auto aspect-square w-56 rounded-3xl bg-gradient-to-br from-brand-400/30 to-indigo-400/20 p-1 ring-1 ring-white/10 sm:w-64">
+          <img
+            id="avatar"
+            src="assets/portrait.png"
+            alt="Hanada Tatsuki のポートレート"
+            width="512" height="512"
+            class="h-full w-full rounded-2xl object-cover"
+            loading="eager" decoding="async" fetchpriority="high"
+          >
         </div>
-      </div>
-
+          
       <div class="mt-10 grid gap-4 md:grid-cols-3">
         <div class="glass rounded-2xl p-4 ring-1 ring-white/10">
           <p class="text-xs uppercase tracking-wider text-slate-400">Affiliation</p>
