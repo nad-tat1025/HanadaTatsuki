@@ -62,6 +62,7 @@
           <span class="hidden sm:block">Hanada Tatsuki</span>
         </a>
         <ul class="hidden gap-6 text-sm sm:flex">
+          <li><a href="#research" class="opacity-90 hover:opacity-100">Research</a></li>
           <li><a href="#edu" class="opacity-90 hover:opacity-100">Education</a></li>
           <li><a href="#exp" class="opacity-90 hover:opacity-100">Experience</a></li>
           <li><a href="#theses" class="opacity-90 hover:opacity-100">Theses</a></li>
@@ -165,6 +166,12 @@
 
   </section>
 
+    <!-- Research Themes -->
+    <section id="research" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Research Themes</h2>
+      <div id="research-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
+    </section>
+  
     <!-- Education -->
     <section id="edu" class="mt-20">
       <h2 class="text-xl font-bold tracking-tight">Education</h2>
@@ -423,6 +430,15 @@ _2025-09-03_
       }
     ],
 
+  "themes": [
+    {
+      "title": "概要",
+      "summary": "",
+      "highlights": [],
+      "links": []
+    }
+  ],
+    
     "awards": [
       {
         "year": "2025.03",
@@ -665,7 +681,39 @@ _2025-09-03_
     renderTheses(siteData.theses || []);
     renderEducation(siteData.education || []);
     renderTalks(siteData.talks || []);
+    renderThemes(siteData.themes || []);
 
+    <script>
+    // ===== Research Themes renderer =====
+    function renderThemes(items = []) {
+      const root = document.getElementById('research-list');
+      if (!root) return;
+      root.innerHTML = '';
+      items.forEach(t => {
+        const head = el('div', {class:'text-sm font-semibold'}, [t.title || 'Untitled']);
+        const sum  = t.summary ? el('p', {class:'mt-1 text-sm text-slate-300'}, [t.summary]) : null;
+    
+        const bullets = (t.highlights || []).map(s =>
+          el('li', {class:'list-disc ms-4 text-sm text-slate-300'}, [s])
+        );
+        const ul = bullets.length ? el('ul', {class:'mt-2'}, bullets) : null;
+    
+        const links = (t.links || []).map(a =>
+          el('a', {href:a.url, target:'_blank', rel:'noopener', class:'text-xs text-brand-200 hover:underline'}, [a.label || 'Link'])
+        );
+        const linkbar = links.length
+          ? el('div', {class:'mt-3 flex flex-wrap gap-3'}, links)
+          : null;
+    
+        const card = el('article', {class:'glass rounded-2xl p-4 ring-1 ring-white/10'}, [head]);
+        if (sum) card.appendChild(sum);
+        if (ul)  card.appendChild(ul);
+        if (linkbar) card.appendChild(linkbar);
+        root.appendChild(card);
+      });
+    }
+    </script>
+    
     // ===== Education, Talks & Theses renderers =====
     function renderEducation(items=[]) {
       const root = document.getElementById('edu-list');
