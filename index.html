@@ -683,7 +683,6 @@ _2025-09-03_
     renderTalks(siteData.talks || []);
     renderThemes(siteData.themes || []);
 
-    <script>
     // ===== Research Themes renderer =====
     function renderThemes(items = []) {
       const root = document.getElementById('research-list');
@@ -712,7 +711,6 @@ _2025-09-03_
         root.appendChild(card);
       });
     }
-    </script>
     
     // ===== Education, Talks & Theses renderers =====
     function renderEducation(items=[]) {
