@@ -68,7 +68,7 @@
           <li><a href="#pubs" class="opacity-90 hover:opacity-100">Publications</a></li>
           <li><a href="#talks" class="opacity-90 hover:opacity-100">Talks</a></li>
           <li><a href="#honors" class="opacity-90 hover:opacity-100">Honors</a></li>
-          <li><a href="#software" class="opacity-90 hover:opacity-100">Software</a></li>
+          <li><a href="#Development" class="opacity-90 hover:opacity-100">Development</a></li>
           <li><a href="#blog" class="opacity-90 hover:opacity-100">Blog</a></li>
         </ul>
         <div class="flex items-center gap-2">
@@ -207,10 +207,10 @@
       <div id="honors-list" class="mt-6 grid gap-4"></div>
     </section>
     
-    <!-- Software -->
-    <section id="software" class="mt-20">
-      <h2 class="text-xl font-bold tracking-tight">Software</h2>
-      <div id="software-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
+    <!-- Development -->
+    <section id="Development" class="mt-20">
+      <h2 class="text-xl font-bold tracking-tight">Development</h2>
+      <div id="Development-list" class="mt-6 grid gap-4 md:grid-cols-2"></div>
     </section>
 
     <!-- Simulation methods (compact chips) -->
@@ -225,7 +225,7 @@
         <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">フォノン計算</span>
         <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">超伝導密度汎関数法</span>
         <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">逆Monte-Carlo法</span>
-        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10"></span>
+        <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">化学結合解析</span>
       </div>
     </section>
   
@@ -367,7 +367,7 @@ _2025-09-03_
       }
     ],
 
-    "software": [
+    "Development": [
       {
         "name": "sol2disorder",
         "desc": "固相の Slater–Koster パラメータを液相へ移植し、非周期大規模系の電子状態を効率的に近似。",
@@ -593,8 +593,8 @@ _2025-09-03_
       });
     }
 
-    function renderSoftware(items=[]) {
-      const root = document.getElementById('software-list') || document.getElementById('projects-list');
+    function renderDevelopment(items=[]) {
+      const root = document.getElementById('Development-list') || document.getElementById('projects-list');
       if(!root) return;
       root.innerHTML='';
       items.forEach(proj => {
@@ -613,7 +613,7 @@ _2025-09-03_
     }
 
     renderPublications(siteData.publications || []);
-    renderSoftware(siteData.software || siteData.projects || []);
+    renderDevelopment(siteData.Development || siteData.projects || []);
 
     function renderExperience(items=[]) {
       const root = document.getElementById('exp-list');
